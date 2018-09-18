@@ -2,8 +2,8 @@
 Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Alexander Harris.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -89,9 +89,23 @@ def problem1a(rectangle, square, thickness, window):
       :type window:    rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+
+    if rectangle.corner_2.y < rectangle.corner_1.y:
+        y = rectangle.corner_2.y
+    else:
+        y = rectangle.corner_1.y
+    x = (rectangle.corner_2.x+rectangle.corner_1.x)/2
+    rectangle.attach_to(window)
+    square.attach_to(window)
+    line = rg.Line(square.center, rg.Point(x, y))
+    line.thickness = thickness
+    line.color = rectangle.outline_color
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
 
 
 def run_test_problem1b():
@@ -149,9 +163,16 @@ def problem1b(point, win, width, height, color):
       :type color:  str
     """
     # --------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+
+    point.attach_to(win)
+    ellipse = rg.Ellipse(rg.Point(point.x-(width/2),point.y),rg.Point(point.x+(width/2),point.y+(height)))
+    ellipse.fill_color = color
+    ellipse.attach_to(win)
+    win.render()
+    win.continue_on_mouse_click()
 
 
 # ------------------------------------------------------------------------------

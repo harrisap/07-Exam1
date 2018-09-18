@@ -2,8 +2,8 @@
 Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Alexander Harris.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -88,20 +88,45 @@ def problem3(point, length, delta, window):
       :type window:  rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
-    # TODO (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
-    # TODO (continued):    1. Make the sole VERTICAL line appear,
-    # TODO (continued):         with thickness 3.
-    # TODO (continued):    2. Make the FIRST horizontal line appear.
-    # TODO (continued):    3. Make MORE horizontal lines appear,
-    # TODO (continued):         each delta below the previous one.
-    # TODO (continued):    4. Make each successive horizontal line
-    # TODO (continued):         20 pixels longer than the previous one.
-    # TODO (continued):    5. Make the right NUMBER of horizontal lines.
-    # TODO (continued):    6. Make the horizontal lines each have thickness 3
-    # TODO (continued):         and colors per the specified pattern.
+    # DONE: 2. Implement and test this function.
+    # DONE (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
+    # DONE (continued):    1. Make the sole VERTICAL line appear,
+    # DONE (continued):         with thickness 3.
+    # DONE (continued):    2. Make the FIRST horizontal line appear.
+    # DONE (continued):    3. Make MORE horizontal lines appear,
+    # DONE (continued):         each delta below the previous one.
+    # DONE (continued):    4. Make each successive horizontal line
+    # DONE (continued):         20 pixels longer than the previous one.
+    # DONE (continued):    5. Make the right NUMBER of horizontal lines.
+    # DONE (continued):    6. Make the horizontal lines each have thickness 3
+    # DONE (continued):         and colors per the specified pattern.
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+
+    line1 = rg.Line(point,rg.Point(point.x,point.y+length))
+    line1.color = 'black'
+    line1.thickness = 3
+    line1.attach_to(window)
+    window.render()
+
+    window.continue_on_mouse_click()
+
+    for k in range((length//delta)+1):
+        deltashift = k * delta
+        line = rg.Line(rg.Point(point.x,point.y+deltashift),rg.Point(point.x+(length+(k*20)),point.y+deltashift))
+        line.thickness = 3
+
+        if k%3 == 0:
+            line.color = 'pink'
+        elif k%3 == 1:
+            line.color = 'blue'
+        elif k%3 == 2:
+            line.color = 'green'
+
+        line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
 
 
 # ----------------------------------------------------------------------
